@@ -1,0 +1,39 @@
+openapi: 3.0.0
+info:
+  title: Dukedoms of Daleria Gateway API
+  version: 0.1.0
+  
+paths:
+  /newGame:
+    post:
+      tags:
+        - NewGame
+      summary: Create a New Game
+      operationId: createNewGame
+      parameters: 
+        - name: playerId
+          in: query
+          description: player's id
+          required: true
+          schema:
+            type: integer
+      responses: 
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewGameResponse'
+        '401':
+          description: unauthorized
+                
+                
+components:
+  schemas:
+    NewGameResponse:
+      type: object
+      properties:
+        GameId:
+          type: integer
+      required:
+        - GameId
